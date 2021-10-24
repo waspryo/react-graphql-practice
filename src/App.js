@@ -1,16 +1,7 @@
 import client from './client'
+import { ME } from './graphql'
 import {ApolloProvider} from 'react-apollo'
-import gql from 'graphql-tag'
 import {Query} from 'react-apollo'
-
-const ME = gql`
-  query me {
-    user(login: "waspryo") {
-      name,
-      avatarUrl
-    }
-  }
-`
 
 function App() {
   return (
