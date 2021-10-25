@@ -50,7 +50,7 @@ function App() {
                     const node = edge.node;
                     return (
                       <li key={node.id}>
-                        <a href={node.url} target="_blank">
+                        <a href={node.url} target="_blank" rel="noreferrer">
                           {node.name}
                         </a>
                       </li>
