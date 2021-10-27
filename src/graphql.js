@@ -1,25 +1,38 @@
-import gql from 'graphql-tag'
+import gql from "graphql-tag";
 
 export const ME = gql`
   query me {
     user(login: "waspryo") {
-      name,
+      name
       avatarUrl
     }
   }
-`
+`;
 
 export const SEARCH_REPOSITORIES = gql`
-  query searchRepositories($first: Int, $after: String, $last: Int, $before: String, $query: String!) {
-    search(first: $first, after: $after, last: $last, before: $before, query: $query, type: REPOSITORY) {
-      repositoryCount,
+  query searchRepositories(
+    $first: Int
+    $after: String
+    $last: Int
+    $before: String
+    $query: String!
+  ) {
+    search(
+      first: $first
+      after: $after
+      last: $last
+      before: $before
+      query: $query
+      type: REPOSITORY
+    ) {
+      repositoryCount
       pageInfo {
         endCursor
         hasNextPage
         hasPreviousPage
         startCursor
       }
-      edges{
+      edges {
         cursor
         node {
           ... on Repository {
@@ -35,4 +48,4 @@ export const SEARCH_REPOSITORIES = gql`
       }
     }
   }
-  `
+`;
