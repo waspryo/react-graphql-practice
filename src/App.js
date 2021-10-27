@@ -4,6 +4,11 @@ import { Query } from "react-apollo";
 import client from "./client";
 import { SEARCH_REPOSITORIES } from "./graphql";
 
+const StarButton = (props) => {
+  const totalCount = props.node.stargazers.totalCount;
+  return <button>{totalCount === 1 ? "1 star" : `${totalCount} stars`}</button>;
+};
+
 const PER_PAGE = 5;
 const DEFAULT_STATE = {
   first: PER_PAGE,
@@ -53,7 +58,6 @@ class App extends Component {
 
   render() {
     const { query, first, last, before, after } = this.state;
-    console.log({ query });
 
     return (
       <ApolloProvider client={client}>
@@ -89,6 +93,8 @@ class App extends Component {
                         >
                           {node.name}
                         </a>
+                        &nbsp;
+                        <StarButton node={node} />
                       </li>
                     );
                   })}
@@ -98,7 +104,6 @@ class App extends Component {
                     Previous
                   </button>
                 ) : null}
-                {console.log(search.pageInfo, "22222222222")}
                 {search.pageInfo.hasNextPage === true ? (
                   <button onClick={this.goNext.bind(this, search)}>Next</button>
                 ) : null}
